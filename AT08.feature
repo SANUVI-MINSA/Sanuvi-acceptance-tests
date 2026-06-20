@@ -1,3 +1,4 @@
+
 Feature: View Facilities Analytics
 
   As an administrator
