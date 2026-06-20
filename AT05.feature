@@ -1,10 +1,10 @@
-Feature: Search Nearby Health Facilities
+Feature: Generate Treatment Adherence Report
 
-  As a mother
-  I want to search nearby health facilities
-  So that I can schedule appointments
+  As a nurse
+  I want to generate an adherence report
+  So that I can monitor patient progress
 
-  Scenario: Search nearby facilities
-    Given my current coordinates
-    When I request nearby facilities
-    Then facilities are returned ordered by distance
+  Scenario: Generate adherence report successfully
+    Given a patient with treatment records
+    When the nurse requests the adherence report
+    Then the system returns the adherence percentage
