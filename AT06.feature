@@ -1,3 +1,4 @@
+
 Feature: View Badges
 
   As a mother
