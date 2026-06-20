@@ -1,10 +1,18 @@
-Feature: Cancel Appointment
+Feature: Analytics Dashboard Summary
 
-  As a mother
-  I want to cancel an appointment
-  So that I can reschedule later
+  As an administrator
+  I want to view analytics metrics
+  So that I can monitor health facilities
 
-  Scenario: Cancel appointment successfully
-    Given an existing appointment
-    When cancellation is requested
-    Then appointment status becomes Cancelled
+  Scenario: Get dashboard summary successfully
+    Given I am authenticated as an administrator
+    When I send a GET request to "/api/analytics/dashboard/summary"
+    Then the response status should be 200
+    And the response body should contain:
+    """
+    {
+      "totalActiveFacilities": 4,
+      "totalCriticalFacilities": 2,
+      "globalAdherenceRate": 54.25
+    }
+    """
