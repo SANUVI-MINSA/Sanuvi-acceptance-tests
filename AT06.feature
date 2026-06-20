@@ -1,10 +1,10 @@
-Feature: Reserve Appointment
+Feature: View Treatment Statistics
 
-  As a mother
-  I want to reserve an appointment
-  So that my child can receive care
+  As a nurse
+  I want to view treatment statistics
+  So that I can identify patients at risk
 
-  Scenario: Reserve appointment successfully
-    Given an available time slot
-    When the reservation is submitted
-    Then the appointment is created
+  Scenario: View treatment statistics successfully
+    Given treatment data exists
+    When the nurse requests treatment statistics
+    Then the system returns aggregated indicators
