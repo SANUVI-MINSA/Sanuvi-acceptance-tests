@@ -1,10 +1,24 @@
-Feature: View Treatment Statistics
+Feature: View Badges
 
-  As a nurse
-  I want to view treatment statistics
-  So that I can identify patients at risk
+  As a mother
+  I want to view my badges
+  So that I can track my achievements
 
-  Scenario: View treatment statistics successfully
-    Given treatment data exists
-    When the nurse requests treatment statistics
-    Then the system returns aggregated indicators
+  Scenario: Get badges successfully
+    Given I am authenticated as a mother
+    When I send a GET request to "/api/achievements-rewards/patients/{patientId}/badges"
+    Then the response status should be 200
+    And the response body should contain:
+    """
+    {
+      "patientId": "uuid",
+      "patientName": "Mateo Pérez",
+      "badges": [
+        {
+          "type": "FIRST_WEEK",
+          "isUnlocked": true,
+          "progress": 100
+        }
+      ]
+    }
+    """
