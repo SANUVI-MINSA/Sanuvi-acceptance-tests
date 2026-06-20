@@ -1,10 +1,21 @@
-Feature: Generate Treatment Adherence Report
+Feature: View Achievement Progress
 
-  As a nurse
-  I want to generate an adherence report
-  So that I can monitor patient progress
+  As a mother
+  I want to view my treatment progress
+  So that I can track my adherence
 
-  Scenario: Generate adherence report successfully
-    Given a patient with treatment records
-    When the nurse requests the adherence report
-    Then the system returns the adherence percentage
+  Scenario: Get achievement progress successfully
+    Given I am authenticated as a mother
+    When I send a GET request to "/api/achievements-rewards/patients/{patientId}/achievement"
+    Then the response status should be 200
+    And the response body should contain:
+    """
+    {
+      "patientId": "uuid",
+      "patientName": "Mateo Pérez",
+      "status": "ACTIVE",
+      "totalPoints": 70,
+      "currentStreak": 7,
+      "longestStreak": 30
+    }
+    """
